@@ -69,12 +69,6 @@ Without a level, the skill uses Level 2. Without a variant, it infers one from t
 
 ## Installation
 
-### Claude Code (plugin via marketplace)
-```text
-/plugin marketplace add adrianosantospb/Research-and-Writing-skill
-/plugin install research-writing@research-writing-skill
-```
-
 ### Claude Code and Codex (script)
 ```bash
 git clone https://github.com/adrianosantospb/Research-and-Writing-skill.git

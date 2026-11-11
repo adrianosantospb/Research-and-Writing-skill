@@ -13,6 +13,7 @@ Goal: evaluate the author's manuscript against the guideline and give actionable
 4. **Cross-section coherence** — check C1–C8 from `core-rules.md`; build the traceability chain: business problem → technical problem → objectives/RQs → hypotheses → method → results → discussion → conclusions.
 5. **Integrity check** — citations without references and vice versa (C8); suspicious statistics (p-values without test, "significant" without test); claims with no support → mark `[CITATION NEEDED]`.
 6. **Style** — W1–W5 (consistency, acronyms, figure references, hedging).
+   **Language quality** [EXTENSION] — detect (do not rewrite) language issues using the categories of `../writing/academic-proofreading.md` and the matching `../writing/language-profiles/` file; report counts per category with 2–3 representative examples and offer mode 7 (academic editing) as a next step.
 7. **Prioritize** — classify each issue:
    - **Critical**: would likely cause rejection/failure (missing evaluation, no hypotheses evaluated, results mixed with method, no gap/positioning, fabricated-looking data).
    - **Major**: weakens the work substantially (no business/technical distinction, table without proposal row, threats not revisited).

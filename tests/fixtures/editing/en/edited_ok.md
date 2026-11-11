@@ -1,0 +1,1 @@
+The proposed model reached 91.3% accuracy on the test set [4]. The number of samples was 1,200, and each participant was asked to complete a survey (Smith and Lee, 2021). Based on these results, the accuracy of the three models suggests that the approach is promising.

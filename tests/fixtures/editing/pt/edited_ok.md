@@ -1,0 +1,1 @@
+O modelo proposto atingiu 91,3% de acurácia no conjunto de teste [4]. Houve melhorias em relação ao baseline de 87,5% (Silva; Souza, 2022), o que implica um ganho de 3,8 pontos percentuais. O modelo foi treinado durante 50 épocas com taxa de aprendizado $\eta = 0{,}001$. Assim, os resultados sugerem que a abordagem é promissora para inspeção industrial.

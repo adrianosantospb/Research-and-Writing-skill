@@ -1,0 +1,9 @@
+# Codex-only metadata (ignored by Claude). See https://learn.chatgpt.com/docs/build-skills
+interface:
+  display_name: "Research Writing"
+  short_description: "Plan, write, review and analyze scientific articles, dissertations and theses"
+  brand_color: "#1F4E79"
+  default_prompt: "Use $research-writing to review my manuscript against the guideline and list issues by section."
+
+policy:
+  allow_implicit_invocation: true

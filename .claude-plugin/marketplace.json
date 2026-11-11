@@ -1,0 +1,23 @@
+{
+  "name": "research-writing-skill",
+  "owner": {
+    "name": "Adriano Araujo Santos"
+  },
+  "metadata": {
+    "description": "Skill for planning, writing, reviewing and analyzing scientific articles, reports, dissertations and theses.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "research-writing",
+      "description": "Plan, write, review and analyze scientific work (articles, reports, TCC, dissertations, theses) following a structured guideline, with ABNT, ACM, IEEE, APA, Vancouver, LNCS, Chicago and Harvard citation styles.",
+      "version": "1.0.0",
+      "author": { "name": "Adriano Araujo Santos" },
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/research-writing"],
+      "keywords": ["scientific-writing", "academic-writing", "thesis", "dissertation", "related-work", "abnt"],
+      "category": "productivity"
+    }
+  ]
+}

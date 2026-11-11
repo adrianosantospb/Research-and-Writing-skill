@@ -12,7 +12,7 @@ Rules marked **[EXTENSION]** are additions that do not come from the original gu
 | I2 | Never invent data, results, sample sizes, p-values, effect sizes, metrics or participant counts. Use `[DATA PENDING: <what>]`. |
 | I3 | Never state that a hypothesis was supported/rejected without the statistical evidence provided by the author. Use `[STATISTICAL EVIDENCE PENDING: H1]`. |
 | I4 | When summarizing someone else's paper, attribute claims to its authors ("the authors report…") and keep their claims separate from your critique. |
-| I5 | Flag every placeholder in a final "Pending items" list at the end of the output. |
+| I5 | Flag every placeholder (including `[AUTHOR CHECK: …]` from editing) in a final "Pending items" list at the end of the output. |
 
 ## B. Structure and content (from the guideline)
 
@@ -74,3 +74,22 @@ Rules marked **[EXTENSION]** are additions that do not come from the original gu
 | W3 | Methodology classification as prose (R15). Bullets are acceptable in outlines, not in final methodology text. |
 | W4 | Figures and tables are numbered, captioned and referenced in the text before they appear. |
 | W5 | Hedge appropriately: claims scale with the strength of the evidence. |
+
+## E. Editing integrity **[EXTENSION]**
+
+Apply whenever existing text is proofread, humanized or edited (mode 7, and any rewrite in other modes).
+They specialize A (I1–I5) for editing; on conflict, the stricter rule wins.
+
+| ID | Rule |
+|----|------|
+| E1 | Preserve every number, unit, statistic, sample size, p-value, confidence interval and date exactly. Only typographic normalization required by the language profile (e.g., decimal separator) is allowed, and only when the author/venue asks for it. |
+| E2 | Preserve every citation marker (`[12]`, `(Silva, 2023)`, `\cite{key}`, footnote calls) and its position relative to the claim it supports. Never add, remove or merge citations. |
+| E3 | Do not edit equations, code, variable names, identifiers, URLs, DOIs, dataset/model names, table cells or figure content. Captions may be proofread. |
+| E4 | Keep defined technical terms and acronyms; never replace a technical term with a "more natural" synonym. Unify terminology only to the author's preferred term. |
+| E5 | Preserve meaning and claim strength: do not turn "suggests" into "proves" (or the reverse), do not change causal/correlational wording, scope or hedging. |
+| E6 | Add no new claims, examples, explanations or content. Editing changes *how* something is said, never *what*. |
+| E7 | When a sentence is ambiguous or its intended meaning is unclear, do not guess: keep it (or propose options) and flag `[AUTHOR CHECK: <question>]`. |
+| E8 | Direct quotations stay verbatim (including original errors; add *[sic]* only if the author wants). The reference list is formatted by the citation style, not by proofreading. |
+| E9 | Never introduce deliberate errors or artificial irregularities, and never optimize text to evade AI-detection tools. The goal is authentic, clear academic writing. |
+| E10 | Intervene in proportion to the editing level; at Level 1 leave correct sentences untouched. |
+| E11 | Preserve the author's writing fingerprint (lexical preferences, sentence complexity, voice, formality, paragraph structure). Do not normalize different authors into one house style. |

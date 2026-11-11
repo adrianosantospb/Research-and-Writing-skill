@@ -24,7 +24,7 @@ Rules: R20–R22, C3, I2. Purpose: present experimental outcomes **without inter
 - A concise style is acceptable: "The results are shown in Figure 1."
 
 ## Interpretation words to avoid here
-"this shows that", "this indicates", "because", "due to", "suggests", "demonstrates", "surprisingly", "as expected", "which means", "isto mostra", "isto indica", "devido a", "sugere", "demonstra", "o que significa". Move those sentences to the Discussion.
+"this shows that", "this indicates", "because", "due to", "suggests", "demonstrates", "surprisingly", "as expected", "which means", "isto mostra", "isto indica", "devido a", "sugere", "demonstra", "o que significa", "esto muestra", "lo que indica", "debido a", "cela montre", "ce qui indique", "en raison de". Move those sentences to the Discussion.
 
 ## Merging with Discussion (R22)
 Only if the venue requires. Even then, keep the outcome sentence before the interpretation sentence.

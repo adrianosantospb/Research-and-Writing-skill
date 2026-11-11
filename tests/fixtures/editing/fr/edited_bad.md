@@ -1,0 +1,1 @@
+Les résultats que nous avons obtenus montrent une précision de 93 % sur l'ensemble de test [4]. Bien que l'échantillon soit limité, l'approche améliore nettement la détection des défauts. Si nous avions disposé de plus de données, la variance aurait été plus faible.

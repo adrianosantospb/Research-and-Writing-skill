@@ -1,0 +1,1 @@
+Cabe destacar que el modelo propuesto alcanzó un 91,3 % de exactitud en el conjunto de prueba [4]. Se pidió que los participantes completan el cuestionario después de cada sesión (García y López, 2021). Los datos fueron analizados en base a una prueba de Wilcoxon, obteniendo p = 0,012. Esto sugiere que el enfoque es adecuado para la inspección industrial.

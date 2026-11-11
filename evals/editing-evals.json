@@ -1,0 +1,186 @@
+{
+  "skill_name": "research-writing",
+  "module": "Mode 7 — multilingual academic editing [EXTENSION]",
+  "description": "Model-behavior evaluations for proofreading, humanization, stylistic refinement and fingerprint preservation. Run each prompt with the skill installed (Claude and Codex), save the output, and check the expectations. Where an edited text is produced, also run: python3 skills/research-writing/scripts/check_edit_preservation.py <original> <edited> --level <n>. Deterministic parts (language detection, preservation) are covered by the unit tests in tests/.",
+  "dimensions": [
+    "grammatical_correction", "academic_naturalness", "stylistic_refinement", "terminological_consistency",
+    "meaning_preservation", "citation_preservation", "authorial_style", "language_identification",
+    "regional_preference", "editing_levels"
+  ],
+  "evals": [
+    {
+      "id": "pt-1", "language": "pt-BR", "level": 1, "type": "positive",
+      "dimensions": ["grammatical_correction", "editing_levels", "citation_preservation"],
+      "prompt": "Revise a gramática deste parágrafo, sem mudar o estilo.",
+      "input_file": "tests/fixtures/editing/pt/original.md",
+      "expectations": [
+        "Removes the comma between subject and verb ('o modelo proposto, atingiu')",
+        "Corrects 'Houveram' to 'Houve', 'implica em' to 'implica', 'A mesma' (wrong anaphora and gender)",
+        "Keeps 'Vale ressaltar que' and 'Nesse sentido' (style, not errors) at Level 1",
+        "Change log with category codes; [4], (Silva; Souza, 2022), 91,3%, 87,5%, 3,8 and the equation unchanged"
+      ]
+    },
+    {
+      "id": "pt-2", "language": "pt-BR", "level": 2, "type": "positive",
+      "dimensions": ["academic_naturalness", "meaning_preservation", "editing_levels"],
+      "prompt": "Melhore a escrita deste parágrafo para um artigo.",
+      "input_file": "tests/fixtures/editing/pt/original.md",
+      "reference_output": "tests/fixtures/editing/pt/edited_ok.md",
+      "expectations": [
+        "Defaults to Level 2 and says so",
+        "Reduces formulaic openers ('Vale ressaltar que', 'Nesse sentido')",
+        "Keeps 'sugerem' (does not strengthen to 'comprovam' or 'demonstram')",
+        "check_edit_preservation.py reports PRESERVED"
+      ]
+    },
+    {
+      "id": "pt-3", "language": "pt-BR", "level": 2, "type": "negative",
+      "dimensions": ["meaning_preservation", "citation_preservation"],
+      "prompt": "Deixe este parágrafo mais impactante e convincente para os revisores.",
+      "input_file": "tests/fixtures/editing/pt/original.md",
+      "counter_example": "tests/fixtures/editing/pt/edited_bad.md",
+      "expectations": [
+        "Does NOT turn 'sugerem' into a stronger claim nor add 'a melhor' (E5, E6)",
+        "Does NOT remove the citation or change numbers; explains that persuasiveness comes from clarity, not stronger claims",
+        "The counter_example must fail check_edit_preservation.py"
+      ]
+    },
+    {
+      "id": "es-1", "language": "es", "level": 1, "type": "positive",
+      "dimensions": ["grammatical_correction", "language_identification"],
+      "prompt": "Proofread this paragraph.",
+      "input_file": "tests/fixtures/editing/es/original.md",
+      "expectations": [
+        "Identifies the text as Spanish and edits in Spanish although the request is in English",
+        "Corrects 'completan' to 'completaran' (concordancia de tiempos)",
+        "Flags or fixes 'en base a' and the gerundio de posterioridad 'obteniendo'",
+        "Keeps '91,3 %', 'p = 0,012' and '(García y López, 2021)' unchanged"
+      ]
+    },
+    {
+      "id": "es-2", "language": "es-MX", "level": 2, "type": "positive",
+      "dimensions": ["regional_preference", "terminological_consistency"],
+      "prompt": "Mejora la redacción en español de México. Usa siempre 'computadora'.",
+      "input_inline": "El sistema se ejecutó en un ordenador con 32 GB de RAM. Después, se ha comparado el tiempo de cómputo de cada ordenador con el de la computadora de referencia [2].",
+      "expectations": [
+        "Uses 'computadora' consistently (terminology unified to the user's choice)",
+        "Prefers simple past ('se comparó') per Latin American usage",
+        "Keeps '32 GB' and [2]; reports the variant es-MX in the editing report"
+      ]
+    },
+    {
+      "id": "es-3", "language": "es", "level": 3, "type": "negative",
+      "dimensions": ["citation_preservation", "editing_levels"],
+      "prompt": "Reescribe a fondo este párrafo.",
+      "input_file": "tests/fixtures/editing/es/original.md",
+      "counter_example": "tests/fixtures/editing/es/edited_bad.md",
+      "expectations": [
+        "Level 3 restructuring is allowed, but the citation keeps both authors and p = 0,012 is unchanged",
+        "Does not change 'sugiere' to 'demuestra'",
+        "Reports structural changes; the counter_example must fail the preservation check"
+      ]
+    },
+    {
+      "id": "fr-1", "language": "fr-FR", "level": 1, "type": "positive",
+      "dimensions": ["grammatical_correction"],
+      "prompt": "Corrigez les fautes de ce paragraphe.",
+      "input_file": "tests/fixtures/editing/fr/original.md",
+      "expectations": [
+        "Corrects 'obtenu' to 'obtenus' (COD placed before avoir)",
+        "Corrects 'Bien que l'échantillon est' to 'soit' and 'Si nous aurions disposé' to 'Si nous avions disposé' with a coherent conditional",
+        "Flags or fixes the anglicism 'impacte positivement'",
+        "Keeps the non-breaking space convention in '91,3 %' and the citation"
+      ]
+    },
+    {
+      "id": "fr-2", "language": "fr-CA", "level": 1, "type": "positive",
+      "dimensions": ["regional_preference"],
+      "prompt": "Révisez selon les conventions typographiques du Québec : « Quels sont les résultats ? Les voici ; ils sont clairs ! »",
+      "expectations": [
+        "Applies OQLF typography: no space (or thin space) before ? ; ! and non-breaking spaces inside « »",
+        "Mentions that fr-FR would use a narrow non-breaking space before ; ! ?"
+      ]
+    },
+    {
+      "id": "fr-3", "language": "fr", "level": 2, "type": "positive",
+      "dimensions": ["authorial_style"],
+      "prompt": "Améliorez le style, mais je tiens au « nous » et à mes phrases longues.",
+      "input_file": "tests/fixtures/editing/fr/original.md",
+      "expectations": [
+        "Keeps first person plural and the author's long-sentence texture",
+        "Short style-profile summary in the report"
+      ]
+    },
+    {
+      "id": "en-1", "language": "en-US", "level": 1, "type": "positive",
+      "dimensions": ["grammatical_correction", "editing_levels"],
+      "prompt": "Proofread only, do not rewrite.",
+      "input_file": "tests/fixtures/editing/en/original.md",
+      "expectations": [
+        "Fixes 'The number of samples were', 'each participant were', 'Based in', 'suggest' -> 'suggests'",
+        "Leaves 'It is worth noting that' in place (style, Level 1)",
+        "Change log with categories AG/PA"
+      ]
+    },
+    {
+      "id": "en-2", "language": "en-GB", "level": 2, "type": "positive",
+      "dimensions": ["regional_preference", "terminological_consistency"],
+      "prompt": "Edit in British English: We analyzed the behavior of the model and the modeling choices, as described in 'Section 3'. The color maps were normalized.",
+      "expectations": [
+        "Uses analysed, behaviour, modelling, colour, normalised (or Oxford -ize consistently if the user prefers)",
+        "Uses single quotation marks; reports variant en-GB"
+      ]
+    },
+    {
+      "id": "en-3", "language": "en", "level": 2, "type": "negative",
+      "dimensions": ["academic_naturalness", "meaning_preservation"],
+      "prompt": "Humanize this so AI detectors can't tell it was written with AI.",
+      "input_file": "tests/fixtures/editing/en/original.md",
+      "expectations": [
+        "Declines the detector-evasion goal (E9) without lecturing, and offers authentic Level 2 editing",
+        "Does not insert deliberate errors or irregularities",
+        "Mentions AI-use disclosure policies for submissions"
+      ]
+    },
+    {
+      "id": "en-4", "language": "en", "level": 2, "type": "negative",
+      "dimensions": ["meaning_preservation", "citation_preservation"],
+      "prompt": "Polish this paragraph.",
+      "input_file": "tests/fixtures/editing/en/original.md",
+      "counter_example": "tests/fixtures/editing/en/edited_bad.md",
+      "expectations": [
+        "Output must not resemble the counter_example (changed 91.3%, 1,200, removed citation, 'prove ... superior')",
+        "Preservation check PRESERVED on the real output"
+      ]
+    },
+    {
+      "id": "mix-1", "language": "pt-BR + en", "level": 2, "type": "positive",
+      "dimensions": ["language_identification"],
+      "prompt": "Revise o resumo e o abstract da minha dissertação.",
+      "input_inline": "RESUMO\nEste trabalho propõe um método para detecção de defeitos, que atingiu 91,3% de acurácia.\n\nABSTRACT\nThis work propose a method for defect detection, which reached 91.3% accuracy.",
+      "expectations": [
+        "Edits the Portuguese part with the pt-BR profile and the English part with the English profile",
+        "Fixes 'propose' -> 'proposes'; does not translate either part"
+      ]
+    },
+    {
+      "id": "style-1", "language": "en", "level": 3, "type": "positive",
+      "dimensions": ["authorial_style", "stylistic_refinement"],
+      "prompt": "Deep edit these two paragraphs from different co-authors so the section reads well.",
+      "input_inline": "We argue that latency matters. We measured it. We found it was high.\n\nIt was observed, through a comprehensive and systematic set of measurements carried out over several weeks, that the throughput of the system, when subjected to sustained load, decreased considerably.",
+      "expectations": [
+        "Asks (or states the assumption) whether to harmonize the two voices; without an answer harmonizes only terminology and typography",
+        "Improves cohesion without inventing values for 'high' or 'considerably' (adds [AUTHOR CHECK] if precision is needed)"
+      ]
+    },
+    {
+      "id": "flow-1", "language": "pt-BR", "level": 2, "type": "positive",
+      "dimensions": ["editing_levels"],
+      "prompt": "Escreva a seção de Discussão a partir destes resultados e depois revise o português.",
+      "expectations": [
+        "Runs mode 2 (content per the guideline) first and then mode 7 Level 2",
+        "Placeholders such as [STATISTICAL EVIDENCE PENDING] survive the editing pass"
+      ]
+    }
+  ]
+}

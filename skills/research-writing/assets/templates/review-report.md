@@ -48,6 +48,14 @@ Traceability: business problem → technical problem → objectives/RQs → H �
 | # | Location | Rule | Problem | Suggested fix |
 |---|---|---|---|---|
 
+### Language quality [EXTENSION]
+| Category | Approx. count | Representative example (location) |
+|---|---|---|
+| Grammar / agreement / tense | | |
+| Spelling / punctuation / typography | | |
+| Naturalness / style / terminology | | |
+Suggested editing level for mode 7: [1 | 2 | 3]
+
 ## 5. Automatic checks (script output, verified)
 [summary or "not run"]
 
